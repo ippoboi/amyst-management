@@ -13,7 +13,8 @@ module.exports = {
         btn: {
           background: "#2E2E2E",
           outline: "#3E3E3E",
-          "background-hover": "hsl(var(--btn-background-hover))",
+          "background-hover": "#3E3E3E",
+          "outline-hover": "#232323",
         },
         inputField: {
           background: "#232323",

@@ -13,6 +13,16 @@ import { SubmitButton } from "../submit-button";
 import logo from "@/assets/logoNoGrad.svg";
 
 export default function LoginCard() {
+  const onBlur = () => {
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setError(
+        "Password must be at least 8 characters long, contain at least one uppercase letter, and one number."
+      );
+      return;
+    }
+  };
+
   const signIn = async (formData: FormData) => {
     "use server";
 
@@ -50,8 +60,13 @@ export default function LoginCard() {
       <div className="w-full">
         <form className="animate-in flex-1 flex gap-10 flex-col w-full justify-center ">
           <div className="space-y-3">
-            <Input type="email" placeholder="Email" />
-            <Input type="password" placeholder="Password" isPassword={true} />
+            <Input type="email" placeholder="Email" autoComplete={false} />
+            <Input
+              type="password"
+              placeholder="Password"
+              isPassword={true}
+              autoComplete={false}
+            />
           </div>
           <div className="space-y-4">
             <SubmitButton formAction={signIn} pendingText="Signing In...">
@@ -65,7 +80,7 @@ export default function LoginCard() {
             </div>
 
             <div className="w-full space-y-3">
-              <button className="border-btn-outline w-full text-subTitle border rounded-xl p-3 flex justify-center items-center gap-3">
+              <button className="border-btn-outline hover:bg-btn-outline-hover transition-all w-full text-subTitle border rounded-xl p-3 flex justify-center items-center gap-3">
                 <Image
                   alt="google logo"
                   src={googleIcon}
@@ -74,7 +89,7 @@ export default function LoginCard() {
                 />
                 Sign in with Google
               </button>
-              <button className="border-btn-outline w-full text-subTitle border rounded-xl p-3 flex justify-center items-center gap-3">
+              <button className="border-btn-outline hover:bg-btn-outline-hover transition-all w-full text-subTitle border rounded-xl p-3 flex justify-center items-center gap-3">
                 <Image
                   alt="google logo"
                   src={githubIcon}
@@ -96,9 +111,15 @@ export default function LoginCard() {
 
       <div className="text-subTitle flex gap-2">
         Forgot password?
-        <Link href="/signup">
-          <div className="text-subtileText flex gap-px">
-            Reset <Image src={rightArrowIcon} alt="" width={14} />{" "}
+        <Link href="/">
+          <div className="text-subtileText flex gap-px hover:text-subTitle transition-all group">
+            Reset{" "}
+            <Image
+              src={rightArrowIcon}
+              alt=""
+              width={14}
+              className="opacity-20 group-hover:opacity-100 transition-all"
+            />
           </div>
         </Link>
       </div>

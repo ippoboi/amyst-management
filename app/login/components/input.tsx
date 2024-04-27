@@ -9,9 +9,15 @@ interface InputProps {
   placeholder: string;
   type: string;
   isPassword?: boolean;
+  autoComplete?: boolean;
 }
 
-export default function Input({ placeholder, type, isPassword }: InputProps) {
+export default function Input({
+  placeholder,
+  type,
+  isPassword,
+  autoComplete,
+}: InputProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -22,6 +28,7 @@ export default function Input({ placeholder, type, isPassword }: InputProps) {
         name={placeholder}
         placeholder={placeholder}
         required
+        autoComplete={autoComplete ? "on" : "off"}
       />
       {isPassword && (
         <button
