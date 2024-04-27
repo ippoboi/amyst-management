@@ -1,4 +1,6 @@
-export default function SitemapDashboard() {
+import Projects from "@/app/dashboard/projects";
+
+export default async function SitemapDashboard() {
   return (
     <div className="flex-1 pr-3">
       <div className="h-14 flex flex-col ">
